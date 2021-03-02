@@ -1,0 +1,17 @@
+Usuário:
+id_user -> primary_key
+nome_user
+senha_user
+email_user
+contato_user
+nasc_user
+
+
+Post:
+nome_serv
+categ_serv
+valor_serv
+desc_serv
+outros_serv
+id_serv -> primary_key
+id_user -> foreign_key
