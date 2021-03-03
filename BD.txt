@@ -1,5 +1,6 @@
 Usuário:
 id_user -> primary_key
+nickname_user
 nome_user
 senha_user
 email_user
