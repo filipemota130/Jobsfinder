@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jobsfinder</title>
+    <link rel='stylesheet' href="{{ url_for('static', filename= "css/bootstrap.min.css" ) }}">
 </head>
-<body>
-    <a href="{{ url_for('usuario',userid=123) }}">asdasd</a>
+<body class='conteiner-fluid'>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light row px-5">
+        <a class="navbar-brand " href="{{ url_for('index') }}">JobsFinder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav col-8">
+            {% if id %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('perfil') }}">Perfil
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('perfil') }}">Criar Job</a>
+            </li>
+            {% endif %}
+          </ul>
+            {% if id %}
+            {% else %}
+          <ul class="navbar-nav col-4 justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('cadastro') }}"> <button class="btn btn-outline-primary my-2 my-sm-0">Cadastro</button></a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}"> <button class="btn btn-primary my-2 my-sm-0">Login</button></a>
+            </li>
+          </ul>
+          {% endif %}
+        </div>
+      </nav>
+    {% if id %}
+        <p>tela x {{ id }}</p>
+    {% else %}
+        <p>tela y</p>
+    {% endif %}
+    <script src="{{ url_for('static', filename= "js/bootstrap.min.js" ) }}"></script>
 </body>
 </html>
