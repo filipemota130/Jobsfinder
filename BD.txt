@@ -1,12 +1,13 @@
-Usuário:
+User:
 id_user -> primary_key
 name_user
+nickname_user
 password_user
 email_user
 contact_user
 birth_user
 
-Post:
+Serv:
 name_serv
 categ_serv
 value_serv

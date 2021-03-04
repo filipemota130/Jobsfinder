@@ -20,4 +20,4 @@ class User(db.Model):
         self.number = number
     
     def __repr__(self):
-        return "<User %r>" self.email
+        return "<User %r>" % self.email
