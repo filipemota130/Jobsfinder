@@ -15,7 +15,3 @@ class CadastroForm(FlaskForm):
     password = PasswordField("password", validators=[DataRequired()])
     contact = IntegerField("contact", validators=[DataRequired()])
     birth_date = StringField("birth_date", validators=[DataRequired()])
-    adress = StringField("adress", validators=[DataRequired()])
-    compAdress = StringField("compAdress", validators=[DataRequired()])
-    state = StringField("state", validators=[DataRequired()])
-    city = StringField("city", validators=[DataRequired()])

@@ -19,10 +19,6 @@ def cadastro():
         print(form.nickname.data)
         print(form.contact.data)
         print(form.birth_date.data)
-        print(form.adress.data)
-        print(form.compAdress.data)
-        print(form.state.data)
-        print(form.city.data)
     else:
         print(form.email.errors)
         print(form.password.errors)
@@ -30,10 +26,6 @@ def cadastro():
         print(form.nickname.errors)
         print(form.contact.errors)
         print(form.birth_date.errors)
-        print(form.adress.errors)
-        print(form.compAdress.errors)
-        print(form.state.errors)
-        print(form.city.errors)
     return render_template("cadastro.html", form = form)
 
 @app.route('/login', methods=['GET','POST'])

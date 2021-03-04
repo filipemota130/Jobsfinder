@@ -5,11 +5,6 @@ password_user
 email_user
 contact_user
 birth_user
-adress_user
-compAdress_user
-state_user
-city_user
-
 
 Post:
 name_serv
