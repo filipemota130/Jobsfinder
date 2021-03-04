@@ -1,18 +1,21 @@
 Usuário:
 id_user -> primary_key
-nickname_user
-nome_user
-senha_user
+name_user
+password_user
 email_user
-contato_user
-nasc_user
+contact_user
+birth_user
+adress_user
+compAdress_user
+state_user
+city_user
 
 
 Post:
-nome_serv
+name_serv
 categ_serv
-valor_serv
+value_serv
 desc_serv
-outros_serv
+others_serv
 id_serv -> primary_key
 id_user -> foreign_key
