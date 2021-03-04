@@ -1,46 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobsFinder - Cadastro</title>
-    <link rel='stylesheet' href="{{ url_for('static', filename= 'css/bootstrap.min.css' ) }}">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobsFinder - Cadastro</title>
+  <link rel='stylesheet' href="{{ url_for('static', filename= 'css/bootstrap.min.css' ) }}">
 </head>
-<body>
-    <form action="" method="POST">
-      {{ form.csrf_token }}
-        <div class="form-group">
-          <label for="inputAddress">Nome</label>
-          {{ form.name(class="form-control") }}
+
+<body class='conteiner-fluid d-flex justify-content-center'>
+  <form action="" method="POST" class="pt-4 w-50">
+    {{ form.csrf_token }}
+    <div class="form-group">
+      <label for="inputAddress">Nome Completo</label>
+      {{ form.name(class="form-control") }}
+    </div>
+    <div class="form-group">
+      <label for="inputState">Nome de usuário</label>
+      {{ form.nickname(class="form-control") }}
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        {{ form.email(class="form-control") }}
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Senha</label>
+        {{ form.password(class="form-control") }}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+
+        <div class="form-group col-md-5">
+          <label for="inputCity">Fone</label>
+          {{ form.contact(class="form-control") }}
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            {{ form.email(class="form-control") }}
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Senha</label>
-            {{ form.password(class="form-control") }}
-          </div>
+        <div class="form-group col-md-3 justify-content-end">
+          <label for="inputState">Data de Nascimento</label>
+          {{ form.birth_date(class="form-control") }}
         </div>
-        <div class="form-group">
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputState">Como prefere ser chamado?</label>
-            {{ form.nickname(class="form-control") }}
-          </div>
-          <div class="form-group col-md-5">
-            <label for="inputCity">Fone</label>
-            {{ form.contact(class="form-control") }}
-          </div>
-          <div class="form-group col-md-3">
-            <label for="inputState">Data de Nascimento</label>
-            {{ form.birth_date(class="form-control") }}
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Fazer Cadastro</button>
-      </form>
-      <script src="{{ url_for('static', filename= 'js/bootstrap.min.js' ) }}"></script>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Descrição</label>
+        {{ form.desc(class="form-control", style="height: 100px") }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Fazer Cadastro</button>
+  </form>
+  <script src="{{ url_for('static', filename= 'js/bootstrap.min.js' ) }}"></script>
 </body>
+
 </html>

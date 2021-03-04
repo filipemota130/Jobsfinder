@@ -12,5 +12,6 @@ migrate= Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
+from app.models import user, job , forms
 from app.templates import *
 from app.controllers import router

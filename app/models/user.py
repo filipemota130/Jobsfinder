@@ -10,14 +10,16 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     number = db.Column(db.String(16), nullable=False )
     date = db.Column(db.String(10), nullable=False )
+    desc = db.Column(db.String())
 
-    def __init__(self, name, nick_name, password, email, number, date):
+    def __init__(self, name, nick_name, password, email, number, date, desc):
         self.name = name
         self.nick_name = nick_name
         self.password = password
         self.email = email
         self.date = date
         self.number = number
+        self.desc = desc
     
     def __repr__(self):
         return "<User %r>" % self.email

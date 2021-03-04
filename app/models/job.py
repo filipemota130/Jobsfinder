@@ -8,7 +8,7 @@ class Job(db.Model):
     category = db.Column(db.String(80), nullable=False )
     valor = db.Column(db.String(), nullable=False)
     desc = db.Column(db.String(), nullable=False )
-    outros = db.Column(db.String(), nullable=False )
+    outros = db.Column(db.String())
     id_user = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     freelacer = db.relationship('User', foreign_keys = id_user)
