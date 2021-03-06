@@ -10,6 +10,18 @@
 </head>
 
 <body class='conteiner-fluid d-flex justify-content-center'>
+  <div>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger position-fixed w-50 text-center" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+  </div>
   <form action="" method="POST" class="pt-4 w-50">
     {{ form.csrf_token }}
     <div class="form-group">
@@ -30,6 +42,7 @@
       <a href="{{ url_for('cadastro') }}">Cadastre-se aqui</a>
     </div>
   </form>
+  
   <script src="{{ url_for('static', filename= 'js/bootstrap.min.js' ) }}"></script>
 </body>
 
