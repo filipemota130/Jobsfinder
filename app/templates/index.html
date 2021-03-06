@@ -5,6 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobsfinder</title>
     <link rel='stylesheet' href="{{ url_for('static', filename= 'css/bootstrap.min.css' ) }}">
+    <style>
+    
+      .navbar{
+        position: relative;
+        height: 64px;
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+      }
+      .navbar-brand{
+        font-family: 'Roboto',sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 28px;
+        text-transform: uppercase;
+        color: #000000;
+      }
+          
+      #button-texto{
+        font-family: 'Roboto',sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #FFFFFF;
+      }
+
+      .titulo-cont{
+        font-family: 'Roboto',sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 34px;
+        line-height: 34px;
+        text-align: center;
+        color: #000000;
+      }
+
+      .texto-cont{
+        font-family: 'Roboto',sans-serif;
+        font-style: normal;
+        font-size: 20px;
+        line-height: 28px;
+        text-align: center;
+        color: #000000;
+      }
+      .button-cont{
+        height: 60px;
+        width: 200px;
+        margin-left: 101px;     
+        border-radius: 0px;
+        background: #000000;
+        border-radius: 5px;        
+      }
+      .Texto_perfil{
+        position: relative;
+        width: 691px;
+        height: 33px;
+        font-family: 'Roboto',sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 33px;
+        text-align: center;
+        color: #000000;
+      }
+      .imagem-perfil{    
+        border-radius: 15px;
+        align-items: center;
+        }
+      .nome-perfil{
+        font-family: 'Roboto',sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: center;
+        color: #000000;
+      }
+      .texto1-login{
+        font-family: 'Roboto',sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 45px;
+        color: #000000;
+      }
+      .texto2-login{
+        font-family: 'Roboto',sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 45px;
+        color: #000000;
+      }
+      .botao-cadastro{
+        height: 48px;
+        width: 200px;
+        background: #000000;
+        border-radius: 5px; 
+        }
+      .botao-login{
+        height: 48px;
+        width: 200px;
+        border-radius: 5px;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+      } 
+      .linha-vertical {
+        height: 300px;
+        border-left: 2px solid;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        color:#000000;
+      }
+    </style>
 </head>
 <body class='conteiner-fluid'>
     <nav class="navbar navbar-expand-lg navbar-light bg-light row px-5">
@@ -58,32 +177,102 @@
         </div>
       {% endfor %}
     {% else %}
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="..." alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="..." alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="..." alt="Third slide">
+    <main>
+      <div class="container-fluid" style="background: #F2F2F2; height: 500px;">
+        <div class="container" style="height: 243px; width: 422px; padding-top: 129px;">
+          <div>
+            <p class="titulo-cont">Ready to get started?</p>
+          </div>
+          <div>
+            <p class="texto-cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+          <div >
+            <button class="button-cont"><text id="button-texto" style="padding-left: 25px;">Comece Agora!</text></button>
+          </div>
         </div>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
+      <div class="container-fluid" style="height: 400px;  background: #E8E8E8;"> 
+        <div class="container" style="height: 33px;  width: 691px; padding-top: 134px;">
+          <text class="Texto_perfil">Depois deste site eu agora tenho milhões na conta!! CA$H BABY!</text>
+        </div>
+        <div class="container">
+          <img src="app/static/imagem-preta.jpg" width="40px" height="40px" class="imagem-perfil" style="margin-left: 45%; padding-top: 50px;" /> 
+        </div>
+        <div class="container" style="height: 20px; width: 260px; padding-top:50px;">
+          <text class="nome-perfil">Juan Caio, Mentiroso profissional.</text>
+        </div>
+      </div>
+      <div class="container-fluid" style="height: 240px; background: #F2F2F2;">
+        <div class="container" style="padding-top: 55px;">
+          <text class="texto1-login">Comece agora!</text>
+          <div style="padding-left: 60%;">
+            <button class="botao-cadastro"><text id="button-texto">Criar Conta</text></button>
+            <button class="botao-login"><text id="button-texto" style="color: #000000; ">Fazer Login</text></button>
+          </div>
+          <div style=" height: 90px; width: 420px; margin-right: 65%;">
+            <p class="texto2-login">Faça Login ou crie uma conta IMEDIATAMENTE!</p>
+          </div> 
+        </div>       
+        </div>
+      </div>
+    </main>  
+    <footer style="background: #E8E8E8;">
+      <div class="container text-center text-md-left">
+        <div class="row text-center text-md-left">
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <p>Latest Blog Post</p>
+            <h3>Ready to get started?</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.           
+            </p>
+          </div>
+          <div class="linha-vertical"></div>
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h3>Product</h3>
+            <p>
+              <a>Product</a>
+            </p>
+            <p>
+              <a>Product</a>
+            </p>
+            <p>
+              <a>Product</a>
+            </p>
+            <p>
+              <a>Product</a>
+            </p>
+            <p>
+              <a>Product</a>
+            </p>
+          </div>
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h3>Company</h3>
+            <p>
+              <a>Company</a>
+            </p>
+            <p>
+              <a>Company</a>
+            </p>
+            <p>
+              <a>Company</a>
+            </p>
+            <p>
+              <a>Company</a>
+            </p>
+            <p>
+              <a>Company</a>
+            </p>
+          </div>
+          <hr class="mb-4">
+          <div class="row align-items-center">
+            <div class="col-md-7 col-lg-8">
+              <p>© 2010 — 2020 <a href="#">Privacy</a> <a href="#">Terms</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>  
+  
     {% endif %}
     <script src="{{ url_for('static', filename= "js/bootstrap.min.js" ) }}"></script>
 </body>
