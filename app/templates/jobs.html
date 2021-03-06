@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href="{{ url_for('static', filename= 'css/bootstrap.min.css' ) }}">
+    <title>JobMaker</title>
+</head>
+<body>
+    <form action="" method="POST" class="pt-4 w-50">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        <label for="inputAddress">Nome do serviço</label>
+        {{ form.name(class="form-control") }}
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Categoria</label>
+          {{ form.category(class="form-control") }}
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Valor do serviço</label>
+          {{ form.value(class="form-control") }}
+        </div>
+      </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Descrição</label>
+          {{ form.description(class="form-control", style="height: 100px") }}
+        </div>
+        <div class="form-group">
+          <label for="inputState">Outras informações</label>
+          {{ form.others(class="form-control") }}
+        </div>
+      <button type="submit" class="btn btn-primary">Fazer Cadastro</button>
+    </form>
+    
+    <script src="{{ url_for('static', filename= 'js/bootstrap.min.js' ) }}"></script>
+</body>
+</html>

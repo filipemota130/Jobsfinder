@@ -18,3 +18,10 @@ class CadastroForm(FlaskForm):
     contact = IntegerField("contact", validators=[DataRequired()])
     birth_date = StringField("birth_date", validators=[DataRequired()])
     desc = TextAreaField("description")
+
+class CadastroJobForm(FlaskForm):
+    name = StringField("name", validators=[DataRequired()])
+    category = StringField("category", validators=[DataRequired()])
+    value = StringField("value", validators=[DataRequired()])
+    description = TextAreaField("description", validators=[DataRequired()])
+    others = StringField("others")

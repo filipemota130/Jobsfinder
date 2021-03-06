@@ -3,14 +3,20 @@ from app import app, db
 from werkzeug.security import generate_password_hash
 
 from app.models.user import User
-from app.models.forms import LoginForm, CadastroForm
+from app.models.job import Job
+from app.models.forms import LoginForm, CadastroForm, CadastroJobForm
 
+current_user = None;
+def changeUser(changedUser):
+    global current_user
+    current_user = changedUser
 
 @app.route('/', defaults={'id': None})
 @app.route('/index')
 @app.route('/home/<int:id>')
 def index(id):
-    return render_template('index.html', id=id)
+    print(current_user)
+    return render_template('index.html', id=current_user)
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
@@ -25,7 +31,8 @@ def cadastro():
             if confirmation == None :
                 db.session.add(new_user)
                 db.session.commit()
-                return redirect(url_for('index',id = new_user.id))
+                changeUser(new_user.id)
+                return redirect(url_for('index',id = current_user))
             else : 
                 flash("usuário já existente")
         else:
@@ -49,7 +56,8 @@ def login():
             if instance:
                 db.session.add(instance)
                 db.session.commit()
-                return redirect(url_for('index',id = instance.id))
+                changeUser(instance.id)
+                return redirect(url_for('index',id = current_user))
             else :
                 flash("usuário inexistente")
         else:
@@ -66,11 +74,29 @@ def perfil():
 
 @app.route('/jobs')
 def jobs():
-    return 'Jobs page'
+    return 'Tela dos jobs'
 
+@app.route('/cadastroJob', methods=['GET', 'POST'])
+def cadastroJobs():
+    form = CadastroJobForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            new_job = Job(form.name.data, form.category.data, form.value.data, form.description.data, form.others.data, current_user)
+            db.session.add(new_job)
+            db.session.commit()
+            return redirect(url_for('index',id = current_user))
+        else:
+            flash("Erro ao cadastrar serviço")
+            print(form.name.errors)
+            print(form.category.errors)
+            print(form.value.errors)
+            print(form.description.errors)
+            print(form.others.errors)
+    return render_template('jobs.html', form = form)
 
 @app.route('/logout')
 def logout():
     flash("Sessão encerrada!")
-    db.session.expire()
+    db.session.expire_all()
+    changeUser(None)
     return redirect(url_for('index'))
