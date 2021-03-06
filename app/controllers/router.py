@@ -17,8 +17,6 @@ def changeUser(changedUser):
 def index(id):
     print(current_user)
     jobs = Job.query.all()
-    for i in jobs:
-        print("Nome do job: " + i.name)
     return render_template('index.html', id=current_user, jobs = jobs)
 
 @app.route('/cadastro', methods=['GET', 'POST'])
@@ -26,10 +24,8 @@ def cadastro():
     form = CadastroForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            hashed_password = generate_password_hash(form.password.data, method = 'sha256')
-            password = hashed_password
             new_user = User(form.name.data, form.nick_name.data,
-                    password, form.email.data, form.contact.data, form.birth_date.data, form.desc.data)
+                    form.password.data, form.email.data, form.contact.data, form.birth_date.data, form.desc.data)
             confirmation = User.query.filter_by(email= form.email.data).first()
             if confirmation == None :
                 db.session.add(new_user)
@@ -96,6 +92,13 @@ def cadastroJobs():
             print(form.description.errors)
             print(form.others.errors)
     return render_template('cadastroJobs.html', form = form)
+
+@app.route('/delete/<int:id_job>')
+def delete(id_job):
+    query = Job.query.filter_by(id=id_job).first()
+    db.session.delete(query)
+    db.session.commit()
+    return redirect(url_for('index',id = current_user))
 
 @app.route('/logout')
 def logout():
