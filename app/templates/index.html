@@ -38,7 +38,22 @@
         </div>
       </nav>
     {% if id %}
-        <p>tela x {{ id }}</p>
+      {% for job in jobs %}
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="..." class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ job.name }}</h5>
+                <p class="card-text">Valor: {{ job.valor }}</p>
+                <p class="card-text"><small class="text-muted">Publicado pelo usuário {{ job.id_user }}</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     {% else %}
         <p>tela y</p>
     {% endif %}

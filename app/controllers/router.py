@@ -16,7 +16,10 @@ def changeUser(changedUser):
 @app.route('/home/<int:id>')
 def index(id):
     print(current_user)
-    return render_template('index.html', id=current_user)
+    jobs = Job.query.all()
+    for i in jobs:
+        print("Nome do job: " + i.name)
+    return render_template('index.html', id=current_user, jobs = jobs)
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
@@ -92,7 +95,7 @@ def cadastroJobs():
             print(form.value.errors)
             print(form.description.errors)
             print(form.others.errors)
-    return render_template('jobs.html', form = form)
+    return render_template('cadastroJobs.html', form = form)
 
 @app.route('/logout')
 def logout():
