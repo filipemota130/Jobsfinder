@@ -20,7 +20,7 @@
       <ul class="navbar-nav col-8">
         {% if id %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('perfil') }}">Perfil
+          <a class="nav-link" href="{{ url_for('meuperfil') }}">Perfil
           </a>
         </li>
         <li class="nav-item">
@@ -41,18 +41,7 @@
       {% endif %}
     </div>
   </nav>
-  <div>
-    {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-danger position-fixed w-50 text-center" role="alert">
-        {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-{% block body %}{% endblock %}
-  </div class="login">
+  <div class="login">
   <form action="" method="POST" class="pt-4 w-50">
     {{ form.csrf_token }}
     <p class='container' style=" text-align: center;">Já possui uma conta?</p>

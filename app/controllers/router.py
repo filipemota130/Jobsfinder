@@ -66,21 +66,24 @@ def login():
     return render_template('login.html', form=form)
 
 
-@app.route('/perfil')
-def perfil():
-    return render_template('index.html')
+@app.route('/meuperfil')
+def meuperfil():
+    user= User.query.filter_by(id=current_user).first()
+    return render_template('perfil.html', id=current_user, user= user)
 
+@app.route('/perfil/<int:id>')
+def perfil(id):
+    user= User.query.filter_by(id=id).first()
+    return render_template('perfil.html', user=user)
 
-@app.route('/jobs')
-def jobs():
-    return 'Tela dos jobs'
 
 @app.route('/cadastroJob', methods=['GET', 'POST'])
 def cadastroJobs():
     form = CadastroJobForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            new_job = Job(form.name.data, form.category.data, form.value.data, form.description.data, form.others.data, current_user)
+            user = User.query.filter_by(id=current_user).first()
+            new_job = Job(form.name.data, form.category.data, form.value.data, form.description.data, form.others.data, current_user, user.nick_name)
             db.session.add(new_job)
             db.session.commit()
             return redirect(url_for('index',id = current_user))
