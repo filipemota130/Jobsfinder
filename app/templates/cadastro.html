@@ -10,59 +10,140 @@
   <link rel='stylesheet' href="{{ url_for('static', filename= 'style.css' ) }}">
 </head>
 
-<body class='conteiner-fluid d-flex justify-content-center'>
-  <div>
-    {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-danger position-fixed w-50 text-center" role="alert">
-        {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-{% block body %}{% endblock %}
-  </div>
-  <form action="" method="POST" class="pt-4 w-50">
-    {{ form.csrf_token }}
-    <div class="form-group">
-      <label for="inputAddress">Nome Completo</label>
-      {{ form.name(class="form-control") }}
+<body class='conteiner-fluid' >
+  <nav class="navbar navbar-expand-lg navbar-light bg-light row px-5">
+    <a class="navbar-brand " href="{{ url_for('index') }}"><b>JOBSFINDER</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav col-8">
+        {% if id %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('perfil') }}">Perfil
+          </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('cadastroJobs') }}">Criar Job</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+        </li>
+        {% endif %}
+      </ul>
+        {% if id %}
+        {% else %}
+      <ul class="navbar-nav col-4 justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}"> <button class="btn btn-dark my-2 my-sm-0">Login</button></a>
+        </li>
+      </ul>
+      {% endif %}
     </div>
-    <div class="form-group">
-      <label for="inputState">Nome de usuário</label>
-      {{ form.nick_name(class="form-control") }}
+  </nav>
+  <main>
+    <div>
+      {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger position-fixed w-50 text-center" role="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% block body %}{% endblock %}
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">Email</label>
-        {{ form.email(class="form-control") }}
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword4">Senha</label>
-        {{ form.password(class="form-control") }}
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-row">
+    <div class="container-fluid" style="background: #F2F2F2;">
+      <div style="width: 360px; padding-top: 120px; padding-bottom: 123px; margin: 0 auto 0 auto;" >
+        <form action="" method="POST" class="pt-4 w-50" >
+        {{ form.csrf_token }}
+        <h3 style="font-weight: bold; width: 360px; font-size: 20px; text-align: center; margin-bottom: 30px;">Crie sua conta!</h3>
+        <div class="form-group">  
+          {{ form.name(class="form-control", style="height: 64px; width: 360px;" , placeholder="Nome Completo") }}
+        </div>
+        <div class="form-group">
+          {{ form.nick_name(class="form-control", style="height: 64px; width: 360px;" , placeholder="Nome de Usuário") }}
+        </div>
+        <div class="">
+          <div class="form-group ">
+            {{ form.email(class="form-control", style="height: 64px; width: 360px;" , placeholder="Email" ) }}
+          </div>
+          <div class="form-group ">
+            {{ form.password(class="form-control", style="height: 64px; width: 360px;" , placeholder="Senha") }}
+          </div>
+        </div>  
+            <div class="form-group ">
+              {{ form.contact(class="form-control", style="height: 64px; width: 360px;" , placeholder="Telefone") }}
+            </div>
+            <div class="form-group ">
+              {{ form.birth_date(class="form-control", style="height: 64px; width: 360px;" , placeholder="Data de Nascimento") }}
+            </div>
+          <div class="form-group">
+            {{ form.desc(class="form-control", style="height: 151px; width: 360px;" , placeholder="Descrição") }}
+          </div>
 
-        <div class="form-group col-md-5">
-          <label for="inputCity">Fone</label>
-          {{ form.contact(class="form-control") }}
+        <button type="submit" style="height: 64px; width: 360px; border-radius: 5px; background: #000000;"><text class="text-light">Se cadastrar</text></button>
+      </form>
+    </div>
+    </div>
+  </main>
+  <footer style="background: #E8E8E8;">
+    <div class="container text-center text-md-left">
+      <div class="row text-center text-md-left">
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <p>Latest Blog Post</p>
+          <h3>Ready to get started?</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.           
+          </p>
         </div>
-        <div class="form-group col-md-3 justify-content-end">
-          <label for="inputState">Data de Nascimento</label>
-          {{ form.birth_date(class="form-control") }}
+        <div class="linha-vertical"></div>
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h3>Product</h3>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">Descrição</label>
-        {{ form.desc(class="form-control", style="height: 100px") }}
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h3>Company</h3>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+        </div>
+        <hr class="mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-7 col-lg-8">
+            <p>© 2010 — 2020 <a href="#">Privacy</a> <a href="#">Terms</a>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Fazer Cadastro</button>
-  </form>
-  
+  </footer>
   <script src="{{ url_for('static', filename= 'js/bootstrap.min.js' ) }}"></script>
 </body>
 
