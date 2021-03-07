@@ -45,14 +45,7 @@
     text-align: center;
     color: #000000;
   }
-  .button-cont{
-    height: 60px;
-    width: 200px;
-    margin-left: 101px;     
-    border-radius: 0px;
-    background: #000000;
-    border-radius: 5px;        
-  }
+  
   .Texto_perfil{
     position: relative;
     width: 691px;
@@ -65,12 +58,14 @@
     text-align: center;
     color: #000000;
   }
+
   .imagem-perfil{    
-    border-radius: 15px;
-    align-items: center;
-    }
+        width: 5px !important;
+        height: 5px !important;
+  }
+
   .nome-perfil{
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto',sans-serif !important;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

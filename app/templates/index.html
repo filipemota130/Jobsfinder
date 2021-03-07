@@ -1,161 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobsfinder</title>
-    <link rel='stylesheet' href="{{ url_for('static', filename= 'css/bootstrap.min.css' ) }}">
-    <link rel='stylesheet' href="{{ url_for('static', filename= 'style.css' ) }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobsfinder</title>
+  <link rel='stylesheet' href="{{ url_for('static', filename= 'css/bootstrap.min.css' ) }}">
+  <link rel='stylesheet' href="{{ url_for('static', filename= 'style.css' ) }}">
 </head>
+
 <body class='conteiner-fluid'>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light row px-5">
-        <a class="navbar-brand " href="{{ url_for('index') }}"><b>JOBSFINDER</b></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav col-8">
-            {% if id %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('perfil') }}">Perfil
-              </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('cadastroJobs') }}">Criar Job</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
-            </li>
-            {% endif %}
-          </ul>
-            {% if id %}
-            {% else %}
-          <ul class="navbar-nav col-4 justify-content-end">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('login') }}"> <button class="btn btn-dark my-2 my-sm-0">Login</button></a>
-            </li>
-          </ul>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light row px-5">
+    <a class="navbar-brand" href="{{ url_for('index') }}">JOBSFINDER</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav col-8">
+        {% if id %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('perfil') }}">Perfil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('cadastroJobs') }}">Criar Job</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+        </li>
+        {% endif %}
+      </ul>
+      {% if id %}
+      {% else %}
+      <ul class="navbar-nav col-4 justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}"> <button class="btn btn-dark my-2 my-sm-1">Fazer
+              Login</button></a>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+  </nav>
+  {% if id %}
+  {% for job in jobs %}
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="..." class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ job.name }}</h5>
+          <p class="card-text">Valor: {{ job.valor }}</p>
+          <p class="card-text"><small class="text-muted">Publicado pelo usuário {{ job.id_user }}</small></p>
+          {% if id==job.id_user %}
+          <a href="{{ url_for('delete', id_job = job.id) }}"><button class="btn-primary">Excluir</button></a>
           {% endif %}
         </div>
-      </nav>
-    {% if id %}
-      {% for job in jobs %}
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img src="..." class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{ job.name }}</h5>
-                <p class="card-text">Valor: {{ job.valor }}</p>
-                <p class="card-text"><small class="text-muted">Publicado pelo usuário {{ job.id_user }}</small></p>
-                {% if id==job.id_user %}
-                  <a href="{{ url_for('delete', id_job = job.id) }}"><button class="btn-primary">Excluir</button></a>
-                {% endif %}
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <main>
+    <div class="container-fluid d-flex align-items-center"
+      style="background: #F2F2F2; height: 600px; padding-left: 100px;">
+      <div class="justify-content-center align-items-center">
+        <div>
+          <p class="titulo-cont">Ready to get started?</p>
         </div>
-      {% endfor %}
-    {% else %}
-    <main>
-      <div class="container-fluid" style="background: #F2F2F2; height: 500px;">
-        <div class="container" style="height: 243px; width: 422px; padding-top: 129px;">
-          <div>
-            <p class="titulo-cont">Ready to get started?</p>
-          </div>
-          <div>
-            <p class="texto-cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-          <div >
-            <button class="button-cont"><text id="button-texto" style="padding-left: 25px;">Comece Agora!</text></button>
-          </div>
+        <div>
+          <p class="texto-cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class='justify-content-center d-flex'>
+          <button class="btn bg-dark text-light p-3">Comece Agora!</button>
         </div>
       </div>
-      <div class="container-fluid" style="height: 400px;  background: #E8E8E8;"> 
-        <div class="container" style="height: 33px;  width: 691px; padding-top: 134px;">
-          <text class="Texto_perfil">Depois deste site eu agora tenho milhões na conta!! CA$H BABY!</text>
-        </div>
-        <div class="container">
-          <img src="app/static/imagem-preta.jpg" width="40px" height="40px" class="imagem-perfil" style="margin-left: 45%; padding-top: 50px;" /> 
-        </div>
-        <div class="container" style="height: 20px; width: 260px; padding-top:50px;">
-          <text class="nome-perfil">Juan Caio, Mentiroso profissional.</text>
-        </div>
+    </div>
+    <div class="container-fluid py-5 justify-content-center" style="height: auto; background: #E8E8E8;">
+      <div class="justify-content-center d-flex">
+        <text class="Texto_perfil">Depois deste site eu agora tenho milhões na conta!! CA$H BABY!</text>
       </div>
-      <div class="container-fluid" style="height: 240px; background: #F2F2F2;">
-        <div class="container" style="padding-top: 55px;">
-          <text class="texto1-login">Comece agora!</text>
-          <div style="padding-left: 60%;">
-            <button class="botao-cadastro"><text id="button-texto">Criar Conta</text></button>
-            <button class="botao-login"><text id="button-texto" style="color: #000000; ">Fazer Login</text></button>
+      <div class='justify-content-center d-flex'>
+        <img src="../static/juan.jpg" class="rounded-circle p-3" style="width: 150px; height: 150px;" />
+      </div>
+      <p class="nome-perfil" style="font-size: large;">Juan Caio, Mentiroso profissional.</p>
+    </div>
+    <div class="container-fluid" style="height: 240px; background: #F2F2F2;">
+      <div class="container" style="padding-top: 55px;">
+        <div class='d-flex'>
+        <div>
+          <div>
+            <text class="texto1-login">Comece agora!</text>
           </div>
-          <div style=" height: 90px; width: 420px; margin-right: 65%;">
+          <div style=" height: 90px; width: 420px;">
             <p class="texto2-login">Faça Login ou crie uma conta IMEDIATAMENTE!</p>
-          </div> 
-        </div>       
-        </div>
-      </div>
-    </main>  
-    <footer style="background: #E8E8E8;">
-      <div class="container text-center text-md-left">
-        <div class="row text-center text-md-left">
-          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <p>Latest Blog Post</p>
-            <h3>Ready to get started?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.           
-            </p>
-          </div>
-          <div class="linha-vertical"></div>
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h3>Product</h3>
-            <p>
-              <a>Product</a>
-            </p>
-            <p>
-              <a>Product</a>
-            </p>
-            <p>
-              <a>Product</a>
-            </p>
-            <p>
-              <a>Product</a>
-            </p>
-            <p>
-              <a>Product</a>
-            </p>
-          </div>
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h3>Company</h3>
-            <p>
-              <a>Company</a>
-            </p>
-            <p>
-              <a>Company</a>
-            </p>
-            <p>
-              <a>Company</a>
-            </p>
-            <p>
-              <a>Company</a>
-            </p>
-            <p>
-              <a>Company</a>
-            </p>
-          </div>
-          <hr class="mb-4">
-          <div class="row align-items-center">
-            <div class="col-md-7 col-lg-8">
-              <p>© 2010 — 2020 <a href="#">Privacy</a> <a href="#">Terms</a>
-              </p>
-            </div>
           </div>
         </div>
+        <div class='justify-content-end' style="padding-left: 350px;">
+          <div>
+            <a href="{{ url_for('cadastro') }}"><button class="btn btn-dark p-3 mb-2"><text id="button-texto">Criar Conta</text></button></a>
+          </div>
+          <div>
+            <a href="{{ url_for('login') }}"><button class="btn btn-light p-3"><text id="button-texto" style="color:#000">Fazer Login</text></button></a>
+          </div>
+        </div>
+        </div>
+        
+
       </div>
-    </footer>  
-  
-    {% endif %}
-    <script src="{{ url_for('static', filename= "js/bootstrap.min.js" ) }}"></script>
+    </div>
+    </div>
+  </main>
+  <footer style="background: #E8E8E8;">
+    <div class="container text-center text-md-left">
+      <div class="row text-center text-md-left">
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <p>Latest Blog Post</p>
+          <h3>Ready to get started?</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+        </div>
+        <div class="linha-vertical"></div>
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h3>Product</h3>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h3>Company</h3>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+        </div>
+        <hr class="mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-7 col-lg-8">
+            <p>© 2010 — 2020 <a href="#">Privacy</a> <a href="#">Terms</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  {% endif %}
+  <script src="{{ url_for('static', filename= " js/bootstrap.min.js" ) }}"></script>
 </body>
+
 </html>
