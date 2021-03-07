@@ -114,3 +114,14 @@
     margin-bottom: 30px;
     color:#000000;
   }
+
+  .login{
+    display: inline; 
+    float: right;
+  }
+  .cadastro{
+    display: inline; 
+    float: right;
+
+
+  }
