@@ -5,36 +5,126 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href="{{ url_for('static', filename= 'css/bootstrap.min.css' ) }}">
-    <title>JobMaker</title>
+    <link rel='stylesheet' href="{{ url_for('static', filename= 'style.css' ) }}">
+    <title>Jobsfinder - Criar Job</title>
 </head>
 <body>
-    <form action="" method="POST" class="pt-4 w-50">
-      {{ form.csrf_token }}
-      <div class="form-group">
-        <label for="inputAddress">Nome do serviço</label>
-        {{ form.name(class="form-control") }}
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Categoria</label>
-          {{ form.category(class="form-control") }}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <a class="navbar-brand" href="{{ url_for('index') }}">JOBSFINDER</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav col-8">
+        {% if id %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('meuperfil', id=id) }}">Perfil
+          </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('cadastroJobs', id=id) }}">Criar Job</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+        </li>
+        {% endif %}
+      </ul>
+        {% if id %}
+        {% else %}
+      <ul class="navbar-nav col-4 justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}"> <button class="btn btn-dark my-2 my-sm-0">Login</button></a>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+  </nav>
+  <main>
+    <div class="container-fluid d-flex justify-content-center" style="background: #F2F2F2;">
+      <div class='py-5'>
+        <h3 style="font-size: 20px; text-align: center;" class='fw-bold '>Crie sua oferta de trabalho!</h3>
+        <form action="" method="POST" class="pt-4 w-50" >
+        {{ form.csrf_token }}
+        
+        <div class="form-group">  
+          {{ form.name(class="form-control", style="height: 64px; width: 360px;" , placeholder="Titulo do Job") }}
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Valor do serviço</label>
-          {{ form.value(class="form-control") }}
-        </div>
-      </div>
         <div class="form-group">
-          <label for="exampleFormControlTextarea1">Descrição</label>
-          {{ form.description(class="form-control", style="height: 100px") }}
+          {{ form.category(class="form-control", style="height: 64px; width: 360px;" , placeholder="Categoria de serviço") }}
         </div>
-        <div class="form-group">
-          <label for="inputState">Outras informações</label>
-          {{ form.others(class="form-control") }}
+        <div class="">
+          <div class="form-group ">
+            {{ form.value(class="form-control", style="height: 64px; width: 360px;" , placeholder="Valor mínimo" ) }}
+          </div>
+          <div class="form-group">
+            {{ form.description(class="form-control", style="height: 151px; width: 360px;" , placeholder="Descrição") }}
+          </div>
+        </div>  
+          <div class="form-group ">
+            {{ form.others(class="form-control", style="height: 64px; width: 360px;" , placeholder="Observações") }}
+          </div>
+
+        <button type="submit" class='btn btn-dark' style="height: 64px; width: 360px;"><text class="text-light">Publicar Job</text></button>
+      </form>
+    </div>
+    </div>
+  </main>
+  <footer style="background: #E8E8E8;">
+    <div class="container text-center text-md-left">
+      <div class="row text-center text-md-left">
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-5">
+          <h2>Jobsfinder</h2>
+          <h3>precisando de um serviço rápido?</h3>
+          <p>No Jobsfinder você encontra freelancers com serviços dos mais variados de maneira rápida e prática!!
+          </p>
         </div>
-      <button type="submit" class="btn btn-primary">Fazer Cadastro</button>
-    </form>
-    
+        <div class="linha-vertical"></div>
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-5">
+          <h3>Product</h3>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+          <p>
+            <a>Product</a>
+          </p>
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-5">
+          <h3>Company</h3>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+          <p>
+            <a>Company</a>
+          </p>
+        </div>
+        <hr class="mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-7 col-lg-8">
+            <p>© 2010 — 2020 <a href="#">Privacy</a> <a href="#">Terms</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>    
     <script src="{{ url_for('static', filename= 'js/bootstrap.min.js' ) }}"></script>
 </body>
 </html>
