@@ -11,8 +11,8 @@
 </head>
 
 <body class='conteiner-fluid' >
-  <nav class="navbar navbar-expand-lg navbar-light bg-light row px-5">
-    <a class="navbar-brand " href="{{ url_for('index') }}"><b>JOBSFINDER</b></a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <a class="navbar-brand" href="{{ url_for('index') }}">JOBSFINDER</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -42,23 +42,12 @@
     </div>
   </nav>
   <main>
-    <div>
-      {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-danger position-fixed w-50 text-center" role="alert">
-          {{ message }}
-        </div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
-  {% block body %}{% endblock %}
-    </div>
-    <div class="container-fluid" style="background: #F2F2F2;">
-      <div style="width: 360px; padding-top: 120px; padding-bottom: 123px; margin: 0 auto 0 auto;" >
+    <div class="container-fluid d-flex justify-content-center" style="background: #F2F2F2;">
+      <div class='py-5'>
+        <h3 style="font-size: 20px; text-align: center;" class='fw-bold '>Crie sua conta!</h3>
         <form action="" method="POST" class="pt-4 w-50" >
         {{ form.csrf_token }}
-        <h3 style="font-weight: bold; width: 360px; font-size: 20px; text-align: center; margin-bottom: 30px;">Crie sua conta!</h3>
+        
         <div class="form-group">  
           {{ form.name(class="form-control", style="height: 64px; width: 360px;" , placeholder="Nome Completo") }}
         </div>
@@ -83,7 +72,7 @@
             {{ form.desc(class="form-control", style="height: 151px; width: 360px;" , placeholder="Descrição") }}
           </div>
 
-        <button type="submit" style="height: 64px; width: 360px; border-radius: 5px; background: #000000;"><text class="text-light">Se cadastrar</text></button>
+        <button type="submit" class='btn btn-dark' style="height: 64px; width: 360px;"><text class="text-light">Finalizar cadastro</text></button>
       </form>
     </div>
     </div>
@@ -91,14 +80,14 @@
   <footer style="background: #E8E8E8;">
     <div class="container text-center text-md-left">
       <div class="row text-center text-md-left">
-        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-          <p>Latest Blog Post</p>
-          <h3>Ready to get started?</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.           
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-5">
+          <h2>Jobsfinder</h2>
+          <h3>precisando de um serviço rápido?</h3>
+          <p>No Jobsfinder você encontra freelancers com serviços dos mais variados de maneira rápida e prática!!
           </p>
         </div>
         <div class="linha-vertical"></div>
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-5">
           <h3>Product</h3>
           <p>
             <a>Product</a>
@@ -116,7 +105,7 @@
             <a>Product</a>
           </p>
         </div>
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-5">
           <h3>Company</h3>
           <p>
             <a>Company</a>

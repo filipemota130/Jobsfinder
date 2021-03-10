@@ -76,9 +76,8 @@ def perfil(id):
     user= User.query.filter_by(id=id).first()
     return render_template('perfil.html', user=user)
 
-
-@app.route('/cadastroJob', methods=['GET', 'POST'])
-def cadastroJobs():
+@app.route('/cadastroJob/<int:id>', methods=['GET', 'POST'])
+def cadastroJobs(id):
     form = CadastroJobForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -94,7 +93,7 @@ def cadastroJobs():
             print(form.value.errors)
             print(form.description.errors)
             print(form.others.errors)
-    return render_template('cadastroJobs.html', form = form)
+    return render_template('cadastroJobs.html', form = form, id=id)
 
 @app.route('/delete/<int:id_job>')
 def delete(id_job):

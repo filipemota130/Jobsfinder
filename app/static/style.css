@@ -5,15 +5,6 @@
     border: 1px solid #000000;
     box-sizing: border-box;
   }
-  .navbar-brand{
-    font-family: 'Roboto',sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 28px;
-    text-transform: uppercase;
-    color: #000000;
-  }
       
   #button-texto{
     font-family: 'Roboto',sans-serif;
@@ -30,7 +21,7 @@
   .titulo-cont{
     font-family: 'Roboto',sans-serif;
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 34px;
     line-height: 34px;
     text-align: center;
