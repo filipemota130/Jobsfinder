@@ -61,7 +61,7 @@ def login():
         if form.validate_on_submit():
             flash("Login confirmado!")
             instance = User.query.filter_by(email= form.email.data).first()
-            if instance == None or instance.check_senha(form.password.data) == False:
+            if instance is None or not instance.check_senha(form.password.data):
                 flash("usuário inexistente")
                 return redirect(url_for('login'))
             if (form.remember_me.data):
