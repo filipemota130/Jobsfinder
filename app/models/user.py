@@ -1,6 +1,7 @@
 from app import db
-
-class User(db.Model):
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+class User(UserMixin, db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -12,10 +13,15 @@ class User(db.Model):
     date = db.Column(db.String(10), nullable=False )
     desc = db.Column(db.String())
 
-    def __init__(self, name, nick_name, password, email, number, date, desc):
+    def set_senha(self, senha):
+        self.password = generate_password_hash(senha)
+
+    def check_senha(self, senha):
+        return check_password_hash(self.password, senha)
+
+    def __init__(self, name, nick_name, email, number, date, desc):
         self.name = name
         self.nick_name = nick_name
-        self.password = password
         self.email = email
         self.date = date
         self.number = number

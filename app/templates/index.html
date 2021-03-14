@@ -11,16 +11,20 @@
 
 <body class='conteiner-fluid'>
   <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
-    <a class="navbar-brand" href="{{ url_for('index') }}">JOBSFINDER</a>
+    {% if current_user.is_authenticated %}
+    <a class="navbar-brand" href="{{ url_for('index', id=current_user) }}">JOBSFINDER</a>
+    {% else %}
+    <a class="navbar-brand" href="{{ url_for('presentation') }}">JOBSFINDER</a>
+    {% endif %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav col-8">
-        {% if id %}
+        {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('meuperfil', id=id) }}">Perfil
+          <a class="nav-link" href="{{ url_for('meuperfil') }}">Perfil
           </a>
         </li>
         <li class="nav-item">
@@ -31,7 +35,7 @@
         </li>
         {% endif %}
       </ul>
-      {% if id %}
+      {% if current_user.is_authenticated %}
       {% else %}
       <ul class="navbar-nav col-4 justify-content-end">
         <li class="nav-item">
@@ -42,8 +46,9 @@
       {% endif %}
     </div>
   </nav>
-  {% if id %}
-  {% for job in jobs %}
+  {% if current_user.is_authenticated %}
+  <div class='py-5'>
+    {% for job in jobs %}
   <div class="card mb-3 mt-4 ml-3" style="width: 60%;">
     <div class="row no-gutters">
       <div class="col-md-4">
@@ -53,9 +58,27 @@
         <div class="card-body">
           <h5 class="card-title">{{ job.name }}</h5>
           <p class="card-text">Valor: {{ job.valor }}</p>
+          <div class="accordion-item " style="margin-top: -20px; margin-left: -10px;">
+            <h2 class="accordion-header" id="headingOne">
+              <a class="btn text-primary fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <text style="font-size: 14px">Ver detalhes</text>
+              </a>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" style='margin-top: -10px;' aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body ml-3">
+                <div>
+                  {{ job.desc }}
+                </div>
+                <div>
+                  Observações: {{ job.outros }}
+                </div>
+              </div>
+            </div>
+          </div>
           <p class="card-text"><small class="text-muted">Publicado por: {{ job.name_user }}</small></p>
-          {% if id==job.id_user %}
-          <a href="{{ url_for('delete', id_job = job.id) }}"><button class="btn btn-dark">Excluir</button></a>
+          {% if current_user.id ==job.id_user %}
+          <a href="{{ url_for('delete', id_job = job.id) }}"><button class="btn btn-danger">Excluir</button></a>
+          <a href="{{ url_for('perfil', id = job.id_user) }}"><button class='btn btn-dark'>Consultar perfil</button></a>
           {% else %}
           <a href="{{ url_for('perfil', id = job.id_user) }}"><button class='btn btn-dark'>Consultar perfil</button></a>
           {% endif %}
@@ -64,59 +87,10 @@
     </div>
   </div>
   {% endfor %}
-  {% else %}
-  <main>
-    <div class="d-flex align-items-center justify-content-center"
-      style="background: #F2F2F2; height: 600px;">
-      <div class="justify-content-center align-items-center">
-        <div>
-          <p class="titulo-cont">Ready to get started?</p>
-        </div>
-        <div>
-          <p class="texto-cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <div class='justify-content-center d-flex'>
-          <a href="{{ url_for('login') }}"><button class="btn bg-dark text-light p-3">Comece Agora!</button></a>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid py-5 justify-content-center" style="height: auto; background: #E8E8E8;">
-      <div class="justify-content-center d-flex">
-        <text class="Texto_perfil">Depois deste site eu agora tenho milhões na conta!! CA$H BABY!</text>
-      </div>
-      <div class='justify-content-center d-flex'>
-        <img src="../static/juan.jpg" class="rounded-circle p-3" style="width: 150px; height: 150px;" />
-      </div>
-      <p class="nome-perfil" style="font-size: large;">Juan Caio, Mentiroso profissional.</p>
-    </div>
-    <div class="container-fluid" style="height: 240px; background: #F2F2F2;">
-      <div class="container" style="padding-top: 55px;">
-        <div class='d-flex'>
-        <div>
-          <div>
-            <text class="texto1-login">Comece agora!</text>
-          </div>
-          <div style=" height: 90px; width: 420px;">
-            <p class="texto2-login">Faça Login ou crie uma conta IMEDIATAMENTE!</p>
-          </div>
-        </div>
-        <div class='justify-content-end' style="padding-left: 350px;">
-          <div>
-            <a href="{{ url_for('cadastro') }}"><button class="btn btn-dark p-3 mb-2"><text id="button-texto">Criar Conta</text></button></a>
-          </div>
-          <div>
-            <a href="{{ url_for('login') }}"><button class="btn btn-light p-3"><text id="button-texto" style="color:#000">Fazer Login</text></button></a>
-          </div>
-        </div>
-        </div>
-        
-
-      </div>
-    </div>
-    </div>
-  </main>
-  <footer style="background: #E8E8E8;">
+</div>
+  
+  {% endif %}
+  <footer style="background: #E8E8E8;" class='pt-5 mt-4'>
     <div class="container text-center text-md-left">
       <div class="row text-center text-md-left">
         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-5">
@@ -172,9 +146,8 @@
       </div>
     </div>
   </footer>
-
-  {% endif %}
   <script src="{{ url_for('static', filename= " js/bootstrap.min.js" ) }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 
 </html>
