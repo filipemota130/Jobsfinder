@@ -1,47 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobsFinder - Editar</title>
   <link rel='stylesheet' href="{{ url_for('static', filename= 'css/bootstrap.min.css' ) }}">
   <link rel='stylesheet' href="{{ url_for('static', filename= 'style.css' ) }}">
-  <title>Jobsfinder - Criar Job</title>
 </head>
 
-<body>
+<body class='conteiner-fluid' >
   <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
     {% if current_user.is_authenticated %}
     <a class="navbar-brand" href="{{ url_for('index', id=current_user) }}">JOBSFINDER</a>
     {% else %}
     <a class="navbar-brand" href="{{ url_for('presentation') }}">JOBSFINDER</a>
     {% endif %}
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav col-8">
-        {% if id %}
+        {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('meuperfil', id=id) }}">Perfil
+          <a class="nav-link" href="{{ url_for('meuperfil') }}">Perfil
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('cadastroJobs', id=id) }}">Criar Job</a>
+            <a class="nav-link" href="{{ url_for('cadastroJobs', id=current_user.id) }}">Criar Job</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
         </li>
         {% endif %}
       </ul>
-      {% if id %}
-      {% else %}
+        {% if current_user.is_authenticated %}
+        {% else %}
       <ul class="navbar-nav col-4 justify-content-end">
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('login') }}"> <button
-              class="btn btn-dark my-2 my-sm-0">Login</button></a>
+          <a class="nav-link" href="{{ url_for('login') }}"> <button class="btn btn-dark my-2 my-sm-0">Login</button></a>
         </li>
       </ul>
       {% endif %}
@@ -50,33 +48,31 @@
   <main>
     <div class="container-fluid d-flex justify-content-center" style="background: #F2F2F2;">
       <div class='py-5'>
-        <h3 style="font-size: 20px; text-align: center;" class='fw-bold '>Crie sua oferta de trabalho!</h3>
-        <form action="" method="POST" class="pt-4 w-50">
-          {{ form.csrf_token }}
-
-          <div class="form-group">
-            {{ form.name(class="form-control", style="height: 64px; width: 360px;" , placeholder="Titulo do Job") }}
-          </div>
-          <div class="form-group">
-            {{ form.category(class="form-control", style="height: 64px; width: 360px;" , placeholder="Categoria deserviço") }}
-          </div>
-          <div class="">
-            <div class="form-group ">
-              {{ form.value(class="form-control", style="height: 64px; width: 360px;" , placeholder="Valor mínimo" ) }}
-            </div>
-            <div class="form-group">
-              {{ form.description(class="form-control", style="height: 151px; width: 360px;" , placeholder="Descrição")
-              }}
-            </div>
-          </div>
+        <h3 style="font-size: 20px; text-align: center;" class='fw-bold '>Editar dados</h3>
+        <form action="" method="POST" class="pt-4 w-50" >
+        {{ form.csrf_token }}
+        
+        <div class="form-group">
+          {{ form.nick_name(class="form-control", style="height: 64px; width: 360px;" , placeholder="Nome de Usuário", value=user.nick_name) }}
+        </div>
+        <div class="">
           <div class="form-group ">
-            {{ form.others(class="form-control", style="height: 64px; width: 360px;" , placeholder="Observações") }}
+            {{ form.password(class="form-control", style="height: 64px; width: 360px;" , placeholder="Senha") }}
+          </div>
+        </div>  
+            <div class="form-group ">
+              {{ form.contact(class="form-control", style="height: 64px; width: 360px;" , placeholder="Telefone", value= user.number) }}
+            </div>
+            <div class="form-group ">
+              {{ form.birth_date(class="form-control", style="height: 64px; width: 360px;" , placeholder="Data de Nascimento", value=user.date) }}
+            </div>
+          <div class="form-group">
+            {{ form.desc(class="form-control", style="height: 151px; width: 360px;" , placeholder="Descrição") }}
           </div>
 
-          <button type="submit" class='btn btn-dark' style="height: 64px; width: 360px;"><text
-              class="text-light">Publicar Job</text></button>
-        </form>
-      </div>
+        <button type="submit" class='btn btn-dark' style="height: 64px; width: 360px;"><text class="text-light">Salvar alterações</text></button>
+      </form>
+    </div>
     </div>
   </main>
   <footer style="background: #E8E8E8;">

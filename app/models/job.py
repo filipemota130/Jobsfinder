@@ -11,11 +11,10 @@ class Job(db.Model):
     outros = db.Column(db.String())
     id_user = db.Column(db.Integer, db.ForeignKey('users.id'))
     name_user = db.Column(db.String(), db.ForeignKey('users.nick_name'))
+    identifier = db.Column(db.String(), nullable= False, unique=True)
 
-    freelacer = db.relationship('User', foreign_keys = id_user)
-    freelacer = db.relationship('User', foreign_keys = name_user)
 
-    def __init__(self, name, category, valor, desc, outros, id_user, name_user):
+    def __init__(self, name, category, valor, desc, outros, id_user, name_user, identifier):
         self.name = name
         self.category = category
         self.valor = valor
@@ -23,6 +22,7 @@ class Job(db.Model):
         self.outros = outros
         self.id_user = id_user
         self.name_user = name_user
+        self.identifier = identifier
     
     def __repr__(self):
         return "<Job %r>" % self.id

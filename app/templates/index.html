@@ -47,7 +47,7 @@
     </div>
   </nav>
   {% if current_user.is_authenticated %}
-  <div class='py-5'>
+  <div class='pt-5'>
     {% for job in jobs %}
   <div class="card mb-3 mt-4 ml-3" style="width: 60%;">
     <div class="row no-gutters">
@@ -60,13 +60,13 @@
           <p class="card-text">Valor: {{ job.valor }}</p>
           <div class="accordion-item " style="margin-top: -20px; margin-left: -10px;">
             <h2 class="accordion-header" id="headingOne">
-              <a class="btn text-primary fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              <a class="btn text-primary fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#{{ job.identifier }}" aria-expanded="false" aria-controls="collapseOne">
                 <text style="font-size: 14px">Ver detalhes</text>
               </a>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" style='margin-top: -10px;' aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div id="{{ job.identifier }}" class="accordion-collapse collapse" style='margin-top: -10px;' aria-labelledby="headingOne" data-bs-parent="#accordionExample">
               <div class="accordion-body ml-3">
-                <div>
+                <div class='pb-2'>
                   {{ job.desc }}
                 </div>
                 <div>
@@ -78,6 +78,7 @@
           <p class="card-text"><small class="text-muted">Publicado por: {{ job.name_user }}</small></p>
           {% if current_user.id ==job.id_user %}
           <a href="{{ url_for('delete', id_job = job.id) }}"><button class="btn btn-danger">Excluir</button></a>
+          <a href="{{ url_for('EditarJobs', id = job.id) }}"><button class='btn btn-primary'>Editar</button></a>
           <a href="{{ url_for('perfil', id = job.id_user) }}"><button class='btn btn-dark'>Consultar perfil</button></a>
           {% else %}
           <a href="{{ url_for('perfil', id = job.id_user) }}"><button class='btn btn-dark'>Consultar perfil</button></a>
@@ -88,7 +89,13 @@
   </div>
   {% endfor %}
 </div>
-  
+  {% if not jobs %}
+    <div class="d-flex justify-content-center">
+      <div><p class="text-center" style="font-size: 32px; opacity: 50%;">Nenhum Job cadastrado</p>
+      <img src='../static/pasta.png' class='ml-5 mb-3'style="width: 200px; height:200px; opacity: 30%;"></div>
+      
+    </div>
+  {% endif %}
   {% endif %}
   <footer style="background: #E8E8E8;" class='pt-5 mt-4'>
     <div class="container text-center text-md-left">

@@ -2,5 +2,6 @@
     "python.linting.pylintArgs": [
         "--load-plugins",
         "pylint_flask_sqlalchemy",                //This package is optional
-    ]
+    ],
+    "python.pythonPath": "C:\\Users\\filip\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
 }

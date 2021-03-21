@@ -69,6 +69,31 @@
                 </div>
               </div>
             </div>
+            <div class=' d-flex justify-content-center'>
+              <div></div>
+              <a href="{{ url_for('editar', id_user=current_user.id) }}" style="width: 40%;"><button class='btn btn-primary mr-2'> Editar informações</button></a>
+              <br>
+              <button class='btn btn-danger' style="width: 40%;" data-bs-toggle="modal" data-bs-target="#exampleModal">Apagar Conta</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tem certeza disso?</h5>
+        <button  class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+        Ao deletar a conta sua conta será deletada, é sério!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <a href="{{ url_for('delete_user', id_user=current_user.id) }}"><button type="button" class="btn btn-danger">Deletar</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+            </div>
+              
       </div>
         </div>
         
