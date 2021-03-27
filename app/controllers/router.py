@@ -4,7 +4,7 @@ from flask_login import current_user, login_user, logout_user
 import string , random
 from app.models.user import User
 from app.models.job import Job
-from app.models.forms import LoginForm, CadastroForm, CadastroJobForm, EditarForm, EditarJobForm
+from app.models.forms import LoginForm, CadastroForm, CadastroJobForm, EditarForm, EditarJobForm, EmptyForm
 
 
 @login_manager.user_loader
@@ -123,15 +123,26 @@ def meuperfil():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
     user = User.query.filter_by(id=current_user.id).first()
-    return render_template('perfil.html', id=current_user.id, user=user)
+    curtidas=user.curtidas
+    return render_template('perfil.html', id=current_user.id, user=user, curtidas=curtidas)
 
 
-@app.route('/perfil/<int:id>')
+@app.route('/perfil/<int:id>', methods=['GET', 'POST'])
 def perfil(id):
+    form = EmptyForm()
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
     user = User.query.filter_by(id=id).first()
-    return render_template('perfil.html', user=user)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            if  current_user.curtindo(user):
+                current_user.descurtir(user)
+                print('usuário descurtido')
+            else:
+                current_user.curtir(user)
+                print('usuário curtido')
+            return render_template('perfil.html', user=user, form=form, curtindo=current_user.curtindo(user))
+    return render_template('perfil.html', user=user, form=form)
 
 
 @app.route('/cadastroJob/<int:id>', methods=['GET', 'POST'])

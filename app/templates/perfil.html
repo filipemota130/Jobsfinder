@@ -51,7 +51,24 @@
               <h5 class='card-subtitle mb-4'>Nascimento: {{ user.date }}</h5>
               <h4>Sobre mim:</h4>
               <p class='pl-4'>{{ user.desc }}</p>
+              <div class='justify-content-end'>
+              {% if user != current_user %}
+              {% if not current_user.curtindo(user) %}
+                <form action="" method="POST">
+                    {{ form.csrf_token }}
+                    {{ form.Curtir( type="submit", class="btn btn-primary") }}
+                </form>
+              {% else %}
+                <form action="" method="POST">
+                  {{ form.csrf_token }}
+                  {{ form.Descurtir( type="submit", class="btn btn-warning") }}
+                </form>
+              {% endif %}
+            {% endif %}
+          </div>
             </div>
+            
+            
             <div class="accordion-item pl-5 pb-4" style="margin-top: -20px; margin-left: -10px;">
               <h2 class="accordion-header" id="headingOne">
                 <a class="btn text-primary fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">

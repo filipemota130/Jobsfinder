@@ -18,6 +18,7 @@ manager.add_command('db', MigrateCommand)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 if not app.debug:
     if not os.path.exists("logs"):
         os.mkdir("logs")

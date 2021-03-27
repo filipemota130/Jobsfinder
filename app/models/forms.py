@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, IntegerField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, IntegerField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Optional
 from wtforms.fields.html5 import EmailField
 
@@ -39,3 +39,7 @@ class EditarJobForm(FlaskForm):
     value = StringField("value",validators=[DataRequired()])
     description = TextAreaField("description", validators=[Optional()])
     others = StringField("others")
+
+class EmptyForm(FlaskForm):
+    Curtir= SubmitField('Curtir')
+    Descurtir= SubmitField('Descurtir')
